@@ -24,12 +24,12 @@ os.system('mode con: cols=65 lines=15')
 appdata_path = os.getenv('APPDATA')
 # License
 licence_pass = "SR1008"
-licence_dir = path.exists(appdata_path + "/ecash/")
+licence_dir = path.exists(appdata_path + "/avantgardepayments/")
 global license_verify
 if licence_dir == True :
-    licence_sheet = path.exists(appdata_path + "/ecash/license.json")
+    licence_sheet = path.exists(appdata_path + "/avantgardepayments/license.json")
     if licence_sheet == True:
-        license_file_path = appdata_path + "/ecash/license.json"
+        license_file_path = appdata_path + "/avantgardepayments/license.json"
         json_file = open(license_file_path)
         data = json.load(json_file)
         licence_check = data ['license']
@@ -37,14 +37,14 @@ if licence_dir == True :
             print("Licence Verifed")
             license_verify = True
         else :
-            shutil.rmtree(appdata_path + "/ecash", ignore_errors=True)
+            shutil.rmtree(appdata_path + "/avantgardepayments", ignore_errors=True)
             license = getpass.getpass()
             if license == licence_pass:
-                cache_path = os.path.join(str(os.getcwd()), appdata_path + "/ecash")
+                cache_path = os.path.join(str(os.getcwd()), appdata_path + "/avantgardepayments")
                 os.mkdir(cache_path)
                 dictionary = {"license" : license}
                 json_object = json.dumps(dictionary, indent = 1)
-                with open(appdata_path + "/ecash/license.json", "w") as outfile:
+                with open(appdata_path + "/avantgardepayments/license.json", "w") as outfile:
                     outfile.write(json_object)
                 license_verify = True
             else:
@@ -57,7 +57,7 @@ if licence_dir == True :
         if license == licence_pass:
             dictionary = {"license" : license}
             json_object = json.dumps(dictionary, indent = 1)
-            with open(appdata_path + "/ecash/license.json", "w") as outfile:
+            with open(appdata_path + "/avantgardepayments/license.json", "w") as outfile:
                 outfile.write(json_object)
             license_verify = True
         else:
@@ -68,11 +68,11 @@ if licence_dir == True :
 else :
     license = getpass.getpass()
     if license == licence_pass:
-        cache_path = os.path.join(str(os.getcwd()), appdata_path + "/ecash")
+        cache_path = os.path.join(str(os.getcwd()), appdata_path + "/avantgardepayments")
         os.mkdir(cache_path)
         dictionary = {"license" : license}
         json_object = json.dumps(dictionary, indent = 1)
-        with open(appdata_path + "/ecash/license.json", "w") as outfile:
+        with open(appdata_path + "/avantgardepayments/license.json", "w") as outfile:
             outfile.write(json_object)
         license_verify = True
     else:
